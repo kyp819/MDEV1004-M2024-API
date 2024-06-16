@@ -21,3 +21,20 @@ export function DisplayMovieList(req: Request, res:Response,next: NextFunction):
         console.error(err)
     })
 }
+
+export function DislayMovieById(req:Request,res:Response,next:NextFunction)
+{
+    //endpoint should be /movie/display/id
+    let id = req.params.id;
+
+    Movie.findById({_id:id})
+    .then((data)=>
+    {
+        res.status(200).json({success: true,msg: "Movie retrived and displayed",data:data})
+    })
+    .catch((err)=>
+    {
+        console.error(err);
+    })
+
+}
