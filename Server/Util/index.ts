@@ -1,13 +1,3 @@
-import jwt from 'jsonwebtoken';
-import db from '../Config/db';
-
-/**
- * Sanitize array of strings
- *
- * @export
- * @param {string} inputString
- * @returns {string[]}
- */
 export function SanitizeArray(inputString: string): string[]
 {
     let unsanitizedArray = inputString.split(",");
@@ -19,29 +9,4 @@ export function SanitizeArray(inputString: string): string[]
         sanitizedArray.push(unsanitizedString.trim());
     }
     return sanitizedArray;
-}
-
-/**
- * Generate token for the user
- *
- * @export
- * @param {UserDocument} user
- * @returns {string}
- */
-export function GenerateToken(user: UserDocument): string
-{
-    const payload = {
-        id: user.id,
-        DisplayName: user.displayName,
-        username: user.username,
-        EmailAddress: user.emailAddress
-    }
-
-    const jwtOptions =
-    {
-        expiresIn: 604800 // 1 week
-        // Note: this may has a security risk, as the token will be valid for week
-    }
-
-    return jwt.sign(payload, db.secret, jwtOptions);
 }

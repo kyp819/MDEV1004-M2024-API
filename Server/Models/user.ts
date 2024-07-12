@@ -43,7 +43,7 @@ const User = mongoose.model<IUser & PassportLocalDocument>('User',userSchema);
 declare global{
     export type UserDocument = Document & 
     {
-        id:String,
+        _id:String,
         username:String,
         emailAddress: String,
         displayName: String,
