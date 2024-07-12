@@ -1,15 +1,17 @@
-import mongoose, { Collection, PassportLocalDocument, Schema, model } from 'mongoose';
-import passport from 'passport';
+import mongoose, { PassportLocalDocument, Schema, model } from 'mongoose';
 import passportLocalMongoose from 'passport-local-mongoose';
+
 export interface IUser extends PassportLocalDocument
 {
     username: string,
     emailAddress: string,
     displayName: string,
-    created:Date,
-    updated:Date
+    created: Date,
+    updated: Date
 }
-const userSchema =  new Schema<IUser>({
+
+const userSchema = new Schema<IUser> 
+({
     username: {
         type: String,
         required: true,
@@ -23,28 +25,29 @@ const userSchema =  new Schema<IUser>({
         type: String,
         required: true
     },
-    created:{
-        type:Date,
+    created: {
+        type: Date,
         default: Date.now()
     },
-    updated:{
-        type:Date,
-        default:Date.now()
+    updated: {
+        type: Date,
+        default: Date.now()
     }
 },
 {
-collection: 'users'
-}
-);
+    collection: 'users'
+});
 
 userSchema.plugin(passportLocalMongoose);
-const User = mongoose.model<IUser & PassportLocalDocument>('User',userSchema);
 
-declare global{
-    export type UserDocument = Document & 
+const User = mongoose.model<IUser & PassportLocalDocument>('User', userSchema);
+
+declare global
+{
+    export type UserDocument = mongoose.Document & 
     {
-        _id:String,
-        username:String,
+        _id: String,
+        username: String,
         emailAddress: String,
         displayName: String,
     }
