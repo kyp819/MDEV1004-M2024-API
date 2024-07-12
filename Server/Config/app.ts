@@ -1,3 +1,10 @@
+/**
+ * Id:2005878836
+ * Name:Kirtankumar patel
+ * ICE 6 
+ * Date:6/16/24
+ */
+
 import createError, { HttpError } from 'http-errors';
 import express, { NextFunction, Request, Response } from 'express';
 import cookieParser from 'cookie-parser';
@@ -11,8 +18,8 @@ import passport from 'passport';
 import passportLocal from 'passport-local';
 
 // prevent memory leaks with memorystore
-import createMemoryStore from 'memorystore';
-const MemoryStore = createMemoryStore(session);
+//import createMemoryStore from 'memorystore';
+//const MemoryStore = createMemoryStore(session);
 
 // modules for JWT support
 import cors from 'cors';
@@ -59,7 +66,7 @@ app.use(cors());
 // setup express session
 app.use(session({
   cookie: { maxAge: 86400000}, // 1 day in milliseconds
-  store: new MemoryStore({checkPeriod: 86400000}), // 1day in milliseconds
+  //store: new MemoryStore({checkPeriod: 86400000}), // 1 day in milliseconds
   secret: db.secret,
   saveUninitialized: false,
   resave: false
