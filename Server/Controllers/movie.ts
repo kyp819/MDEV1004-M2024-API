@@ -145,6 +145,8 @@ export function UpdateMovie(req:Request, res:Response, next:NextFunction): void
             criticsRating: req.body.criticsRating
         });
 
+        console.log(movieToUpdate);
+
         Movie.updateOne({_id: id}, movieToUpdate)
         .then(() =>
         {

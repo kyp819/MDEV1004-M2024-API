@@ -90,6 +90,7 @@ function UpdateMovie(req, res, next) {
             mpaRating: req.body.mpaRating,
             criticsRating: req.body.criticsRating
         });
+        console.log(movieToUpdate);
         movie_1.default.updateOne({ _id: id }, movieToUpdate)
             .then(() => {
             res.status(200).json({ success: true, msg: "Movie updated", data: movieToUpdate, token: null });
